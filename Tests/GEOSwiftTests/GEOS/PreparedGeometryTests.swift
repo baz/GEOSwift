@@ -47,4 +47,24 @@ final class PreparedGeometryTests: XCTestCase {
             }
         }
     }
+
+    func testDistanceAllTypes() {
+        for (g1, g2) in geometryConvertibles.allPairs {
+            do {
+                _ = try g1.makePrepared().distance(to: g2)
+            } catch {
+                XCTFail("Unexpected error for \(g1) makePrepared().distance( \(g2)) \(error)")
+            }
+        }
+    }
+
+    func testDistanceWithinAllTypes() {
+        for (g1, g2) in geometryConvertibles.allPairs {
+            do {
+                _ = try g1.makePrepared().distance(to: g2, within: 0)
+            } catch {
+                XCTFail("Unexpected error for \(g1) makePrepared().distance( \(g2)) \(error)")
+            }
+        }
+    }
 }
